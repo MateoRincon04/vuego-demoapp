@@ -1,1 +1,18 @@
+version: '3.3'
 
+services:
+  backend:
+    container_name: go_server
+    image: mateorincon/vuego-demoapp:backend
+    build: ./server
+    ports:
+      - 4001:4001
+      
+  frontend:
+    container_name: vue_spa
+    image: mateorincon/vuego-demoapp:frontend
+    build: ./spa
+    ports:
+      - 5000:80
+    depends_on: 
+      - backend
